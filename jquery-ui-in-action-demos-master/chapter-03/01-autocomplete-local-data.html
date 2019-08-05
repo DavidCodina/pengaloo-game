@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+	<title> - </title>
+
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+
+
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Mystery+Quest');
+		@import url('https://fonts.googleapis.com/css?family=Cormorant+SC');
+
+		/* This should not actually be necessary. I believe reboot does this already.
+		https://getbootstrap.com/docs/4.1/content/reboot/ */
+		* { box-sizing: border-box; }
+
+		html {
+			height: 100%;
+		}
+
+		body {
+			min-height: 100%;
+			width: 90%;
+			margin: 0 auto;
+			padding: 1px 0;
+			font-size: 16px;
+			background-color: floralWhite;
+		}
+
+		section {
+			margin-bottom: 200px;
+		}
+
+		article {
+			margin-top: 5%;
+			padding: 2.5%;
+			background-color: white;
+			border: 1px solid black;
+			border-radius: 5px;
+		}
+
+		p {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		header h1 {
+			margin: 5% auto;
+			font-size: 300%;
+			font-family: 'Mystery Quest';
+			text-shadow: -5px 5px 5px rgba(0,0,0,0.25);
+			color: rgb(150,0,0);
+			text-align: center;
+		}
+
+		header h1 > code {
+			color: rgb(150,0,0);
+		}
+
+		h2 {
+			font-family: 'Cormorant SC', serif;
+			margin: 2.5% 0;
+		}
+
+		h3 {
+			font-family: 'Cormorant SC', serif;
+		}
+
+		h2 > code, h3 > code {
+			font-weight: normal;
+		}
+
+
+		pre {
+			margin: 0;
+			padding: 0;
+		}
+
+		code {
+			color: rgb(150,0,0);
+		}
+
+		pre > code { font-size: 90%; }
+
+		hr {
+			border-style:solid; /* This seems to need to be explicitly set*/
+			border: 0.5px solid black;
+			margin: 5% auto;
+			width: 90%;
+		}
+
+		.note { color: blue; }
+
+		.note code { color: inherit; }
+
+		.bg-floral-white { background-color:floralWhite; }
+
+	</style>
+</head>
+
+
+<body>
+	<header>
+    <h1><code>01-autocomplete-local-data.html</code></h1>
+  </header>
+
+  <hr>
+
+	<main>
+    <!-- =========================================================================================================================
+
+    ========================================================================================================================== -->
+
+		<section>
+			<article>
+				<h5>3.2.1 Using Local Data:</h5>
+
+				<p>The easiest way to use the autocomplete widget is with local data—which means that the options are available to JavaScript directly, without needing to contact a remote server.
+				To drive the autocomplete widget with local data, pass an array for the source option.
+				The following is an example of an autocomplete that uses local data:</p>
+
+
+<pre><code>
+$( "#autocomplete" ).autocomplete({
+	source: [ "Alligator", "Ant", "Anteater", "Ape", "Armadillo" ]
+});
+</code></pre><br>
+
+				<p>The five options specified in the source option are suggested to the user in a menu as the user types.
+				</p>
+
+				<p>This gives you the autocomplete behavior you’re looking for. Although the local form of the source option is convenient,
+				you have to load all options before the form is dis- played and store them in JavaScript.
+				This is fine if you have a few dozen or a few hundred options;
+				however, when you have thousands or tens of thousands of options, managing this data in the browser becomes problematic,
+				and often leads to a slow experience for users.</p>
+
+
+				<input id="autocomplete">
+			</article>
+		</section>
+	</main>
+
+
+
+
+	<!-- =========================================================================================================================
+																												scripts
+	========================================================================================================================== -->
+
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery-ui.js"></script>
+
+	<script>
+		$( "#autocomplete" ).autocomplete({
+			source: [ "Alligator", "Ant", "Anteater", "Ape", "Armadillo" ]
+		});
+	</script>
+</body>
+</html>

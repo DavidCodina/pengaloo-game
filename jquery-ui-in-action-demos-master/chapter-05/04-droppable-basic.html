@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Basic Droppable</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		#draggable {
+			width: 100px; 
+			height: 100px; 
+			border: 1px solid black;
+		}
+		#droppable { 
+			width: 200px; 
+			height: 200px;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+
+<div id="draggable"></div>
+<div id="droppable"></div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "#draggable" ).draggable();
+	$( "#droppable" ).droppable({
+		drop: function() {
+			$( this ).css( "background", "red" );
+		}
+	});
+</script>
+
+</body>
+</html>

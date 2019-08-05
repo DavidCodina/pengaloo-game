@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+	<title> - </title>
+
+
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Mystery+Quest');
+		@import url('https://fonts.googleapis.com/css?family=Cormorant+SC');
+
+		/* This should not actually be necessary. I believe reboot does this already.
+		https://getbootstrap.com/docs/4.1/content/reboot/ */
+		* { box-sizing: border-box; }
+
+		html {
+			height: 100%;
+		}
+
+		body {
+			min-height: 100%;
+			width: 90%;
+			margin: 0 auto;
+			padding: 1px 0;
+			font-size: 16px;
+			background-color: floralWhite;
+		}
+
+		section {
+			margin-bottom: 200px;
+		}
+
+		article {
+			margin-top: 5%;
+			padding: 2.5%;
+			background-color: white;
+			border: 1px solid black;
+			border-radius: 5px;
+		}
+
+		p {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		header h1 {
+			margin: 5% auto;
+			font-size: 300%;
+			font-family: 'Mystery Quest';
+			text-shadow: -5px 5px 5px rgba(0,0,0,0.25);
+			color: rgb(150,0,0);
+			text-align: center;
+		}
+
+		header h1 > code {
+			color: rgb(150,0,0);
+		}
+
+		h2 {
+			font-family: 'Cormorant SC', serif;
+			margin: 2.5% 0;
+		}
+
+		h3 {
+			font-family: 'Cormorant SC', serif;
+		}
+
+		h2 > code, h3 > code {
+			font-weight: normal;
+		}
+
+
+		pre {
+			margin: 0;
+			padding: 0;
+		}
+
+		code {
+			color: rgb(150,0,0);
+		}
+
+		pre > code { font-size: 90%; }
+
+		hr {
+			border-style:solid; /* This seems to need to be explicitly set*/
+			border: 0.5px solid black;
+			margin: 5% auto;
+			width: 90%;
+		}
+
+		.note { color: blue; }
+
+		.note code { color: inherit; }
+
+		.bg-floral-white { background-color:floralWhite; }
+
+	</style>
+</head>
+
+
+<body>
+	<header>
+    <h1><code>08-create-event.html</code></h1>
+  </header>
+
+  <hr>
+
+	<main>
+    <!-- =========================================================================================================================
+
+    ========================================================================================================================== -->
+
+		<section>
+			<article id="article1">
+				<h5>Create a <code>&#60;div&#62;</code>, then make it a dialiog, triggering the <code>"dialogcreate"</code> event.</h5>
+
+				<p class="note">This implementation is somewhat different (and better) than the original.</p>
+
+
+<pre><code>
+	$("#button1")
+		//The button container (for centering) is added using jQuery...
+		.wrap("&#60;div class='text-center my-4 p-4'&#62;&#60;/div&#62;")
+
+		//on 'click' &#60;div id='dialog'&#62; is created immediately after the button.
+		.on('click', function() {
+			$("#button1").after("&#60;div id='dialog'&#62;Then the &#60;code&#62;dialogcreate&#60;/code&#62; event was detected, and a message was logged to the console.&#60;/div&#62;")
+
+
+		//Now that &#60;div id='dialog'&#62; exists, it is turned into an actual dialog,
+		//which then fires the dialogcreate event handler.
+		$( "#dialog" )
+			.on( "dialogcreate", function() { console.log( "Dialog was created!" ); })
+			.dialog({
+				title: "You just created me!"
+				});
+		});
+
+</code></pre><br>
+
+				<p></p>
+
+				<br>
+
+				<button id="button1" class="btn btn-primary">Click Me!</button>
+
+			</article>
+		</section>
+	</main>
+
+
+
+
+	<!-- =========================================================================================================================
+																												scripts
+	========================================================================================================================== -->
+
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery-ui.js"></script>
+
+	<script>
+
+
+	$("#button1")
+		//The button container (for centering) is added using jQuery...
+		.wrap("<div class='text-center my-4 p-4'></div>")
+
+		//on 'click' <div id='dialog'> is created immediately after the button.
+		.on('click', function() {
+			$("#button1").after("<div id='dialog'>Then the <code>dialogcreate</code> event was detected, and a message was logged to the console.</div>");
+
+
+		//Now that <div id='dialog'> exists, it is turned into an actual dialog,
+		//which then fires the dialogcreate event handler.
+		$( "#dialog" )
+			.on( "dialogcreate", function() { console.log( "Dialog was created!" ); })
+			.dialog({
+				title: "You just created me!"
+				});
+		});
+	</script>
+</body>
+</html>

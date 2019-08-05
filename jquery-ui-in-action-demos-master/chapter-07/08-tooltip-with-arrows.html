@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tooltip With Arrows</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		body {
+			margin-top: 100px;
+		}
+		.ui-tooltip {
+			width: 200px;
+			text-align: center;
+			box-shadow: none;
+			padding: 0;
+		}
+		.ui-tooltip-content {
+			position: relative;
+			padding: 0.5em;
+		}
+		.ui-tooltip-content::after, .ui-tooltip-content::before {
+			content: "";
+			position: absolute;
+			border-style: solid;
+			display: block;
+			left: 90px;
+		}
+		.ui-tooltip-content::before {
+			bottom: -10px;
+			border-color: #AAA transparent;
+			border-width: 10px 10px 0;
+		}
+		.ui-tooltip-content::after {
+			bottom: -7px;
+			border-color: white transparent;
+			border-width: 10px 10px 0;
+		}
+	</style>
+</head>
+<body>
+
+<label for="amount">Amount:</label>
+<input id="amount" title="Please use xx.xx format.">
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "#amount" ).tooltip({
+		position: {
+			my: "center bottom",
+			at: "center top-10",
+			collision: "none"
+		}
+	});
+</script>
+
+</body>
+</html>

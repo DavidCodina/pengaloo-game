@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Find a Flight!</title>
+
+	<script>
+		if ( window.location.hostname === "localhost" ) {
+			document.write( '<link href="css/app.css" rel="stylesheet">' );
+		} else {
+			document.write( '<link href="built/css/app.css" rel="stylesheet">' );
+		}
+	</script>
+</head>
+<body>
+
+<form>
+	<fieldset>
+		<legend>Find a Flight</legend>
+
+		<div>
+			<label for="from-airport">From:</label>
+			<input id="from-airport" autocomplete="off" required>
+		</div>
+		<div>
+			<label for="to-airport">To:</label>
+			<input id="to-airport" autocomplete="off" required>
+		</div>
+		<div>
+			<label for="date">Date:</label>
+			<input type="date" id="date" placeholder="yyyy-mm-dd" required>
+		</div>
+		<div>
+			<label for="results">Max # of Results:</label>
+			<input type="number" id="results" value="10" min="10" max="100" step="10">
+		</div>
+		<div>
+			<label>Hops:</label>
+			<div id="hops">
+				<label for="hops-any">Any</label>
+				<input type="radio" name="hops" id="hops-any" value="" checked>
+				<label for="hops-nonstop">Nonstop Only</label>
+				<input type="radio" name="hops" id="hops-nonstop" value="NONSTOP">
+			</div>
+		</div>
+		<div>
+			<label for="order-by">Order By:</label>
+			<select id="order-by">
+				<option value="0">Arrival Time</option>
+				<option value="1">Departure Time</option>
+				<option value="2">Duration</option>
+			</select>
+		</div>
+		<div>
+			<button id="lookup" class="ui-priority-primary">Lookup</button>
+		</div>
+	</fieldset>
+</form>
+
+<div id="flights-container"></div>
+
+<script>
+	if ( window.location.hostname === "localhost" ) {
+		document.write( '<script src="js/require.js" ' +
+			'data-main="js/app"><\/script>' );
+	} else {
+		document.write( '<script src="built/js/app.js"><\/script>' );
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Draggable on X and Y Axis</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		#x, #y {
+			width: 100px;
+			height: 100px;
+		}
+		#x { background: red; }
+		#y { background: blue; }
+	</style>
+</head>
+<body>
+
+<div id="x"></div>
+<div id="y"></div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "#x" ).draggable({ axis: "x" });
+	$( "#y" ).draggable({ axis: "y" });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Menu Widget</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<style>
+		.ui-menu { width: 200px; }
+	</style>
+</head>
+<body>
+
+<ul id="menu">
+	<li>
+		<span class="ui-icon ui-icon-star"></span>
+		Star
+	</li>
+	<li></li>
+	<li>
+		Options
+		<ul>
+			<li>One</li>
+			<li>Two</li>
+		</ul>
+	</li>
+</ul>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "#menu" ).menu();
+</script>
+
+</body>
+</html>

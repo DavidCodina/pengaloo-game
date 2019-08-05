@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+	<title> - </title>
+
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+
+
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Mystery+Quest');
+		@import url('https://fonts.googleapis.com/css?family=Cormorant+SC');
+
+		/* This should not actually be necessary. I believe reboot does this already.
+		https://getbootstrap.com/docs/4.1/content/reboot/ */
+		* { box-sizing: border-box; }
+
+		html {
+			height: 100%;
+		}
+
+		body {
+			min-height: 100%;
+			width: 90%;
+			margin: 0 auto;
+			padding: 1px 0;
+			font-size: 16px;
+			background-color: floralWhite;
+		}
+
+		section {
+			margin-bottom: 200px;
+		}
+
+		article {
+			margin-top: 5%;
+			padding: 2.5%;
+			background-color: white;
+			border: 1px solid black;
+			border-radius: 5px;
+		}
+
+		p {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		header h1 {
+			margin: 5% auto;
+			font-size: 300%;
+			font-family: 'Mystery Quest';
+			text-shadow: -5px 5px 5px rgba(0,0,0,0.25);
+			color: rgb(150,0,0);
+			text-align: center;
+		}
+
+		header h1 > code {
+			color: rgb(150,0,0);
+		}
+
+		h2 {
+			font-family: 'Cormorant SC', serif;
+			margin: 2.5% 0;
+		}
+
+		h3 {
+			font-family: 'Cormorant SC', serif;
+		}
+
+		h2 > code, h3 > code {
+			font-weight: normal;
+		}
+
+
+		pre {
+			margin: 0;
+			padding: 0;
+		}
+
+		code {
+			color: rgb(150,0,0);
+		}
+
+		pre > code { font-size: 90%; }
+
+		hr {
+			border-style:solid; /* This seems to need to be explicitly set*/
+			border: 0.5px solid black;
+			margin: 5% auto;
+			width: 90%;
+		}
+
+		.note { color: blue; }
+
+		.note code { color: inherit; }
+
+		.bg-floral-white { background-color:floralWhite; }
+
+	</style>
+</head>
+
+
+<body>
+	<header>
+    <h1><code>02-autocomplete-label-value.html</code></h1>
+  </header>
+
+  <hr>
+
+	<main>
+    <!-- =========================================================================================================================
+
+    ========================================================================================================================== -->
+
+		<section>
+			<article>
+				<h5>Associating options with codes:</h5>
+
+				<p>Often back-end structures need to associate a code with each option in an autocomplete.
+				For example, a back end might require the code “UK” instead of the label “United Kingdom”.
+				For this scenario, the source option accepts an array of objects with <code>label</code> and <code>value</code> properties.
+				The following shows an autocomplete that displays country names and maps them to country codes on selection:</p>
+
+
+<pre><code>
+$( "#autocomplete" ).autocomplete({
+	source: [
+		{ label: "United Kindgdom (UK)", value: "UK" },
+		{ label: "United States of America (USA)", value: "USA" }
+	]
+});
+</code></pre><br>
+
+				<p>When the user selects an option, the value is entered in the text box rather than the label.
+				When labels and values are used, the user sees the labels, but the values are placed in the input after selection.
+				</p>
+
+				<p>Notice that in this example you include the value of each option within its label (“United Kingdom (UK)” instead of “United Kingdom”).
+				There are a couple reasons for doing this.
+				First, it allows the user to type either labels or values to see autocomplete options.
+				In the country example, this means the user can type <code>"un"</code> or <code>"us"</code> to see the United States.
+				Second, including the value in the label makes it less surprising when the value ends up in the input after selection.
+				For instance, the user could be surprised by their “Switzerland” selection changing to <code>"CHE"</code>,
+				whereas they would likely understand the change after selecting “Switzerland (CHE)”.</p>
+
+				<br>
+				<input id="autocomplete">
+			</article>
+		</section>
+	</main>
+
+
+
+
+	<!-- =========================================================================================================================
+																												scripts
+	========================================================================================================================== -->
+
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery-ui.js"></script>
+
+	<script>
+	$( "#autocomplete" ).autocomplete({
+		source: [
+			{ label: "United Kindgdom (UK)", value: "UK" },
+			{ label: "United States of America (USA)", value: "USA" }
+		]
+	});
+	</script>
+</body>
+</html>

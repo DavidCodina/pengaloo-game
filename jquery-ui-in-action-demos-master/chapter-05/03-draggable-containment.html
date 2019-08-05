@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Draggable With Containment</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		#parent {
+			border: 1px dotted black;
+			width: 400px;
+			height: 200px;
+		}
+		#draggable {
+			background: red;
+			height: 50px;
+			width: 50px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="parent">
+	<div id="draggable"></div>
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "#draggable" ).draggable({ containment: "#parent" });
+</script>
+
+</body>
+</html>

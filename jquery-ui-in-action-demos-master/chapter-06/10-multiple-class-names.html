@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Animating Multiple Class Names</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		.red { color: red; }
+		.big { font-size: 5em; }
+		.spaced { padding: 1em; }
+	</style>
+</head>
+<body>
+
+<p>jQuery UI Rocks!</p>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "p" ).addClass( "red big spaced", 3000 );
+</script>
+
+</body>
+</html>

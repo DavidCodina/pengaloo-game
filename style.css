@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css?family=Mystery+Quest');
+@import url('https://fonts.googleapis.com/css?family=Cormorant+SC');
+
+/* This should not actually be necessary. I believe reboot does this already.
+https://getbootstrap.com/docs/4.1/content/reboot/ */
+* { box-sizing: border-box; }
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  width: 90%;
+  margin: 0 auto;
+  padding: 1px 0;
+  font-size: 16px;
+  background-color: floralWhite;
+}
+
+section {
+  margin-bottom: 200px;
+}
+
+article {
+  margin-top: 5%;
+  padding: 2.5%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin: 5% auto;
+  font-size: 500%;
+  font-family: 'Mystery Quest';
+  text-shadow: -5px 5px 5px rgba(0,0,0,0.25);
+  color: violet;
+  text-align: center;
+}
+
+header h1 > code {
+  color: rgb(150,0,0);
+}
+
+h2 {
+  font-family: 'Cormorant SC', serif;
+  margin: 2.5% 0;
+}
+
+h3 {
+  font-family: 'Cormorant SC', serif;
+}
+
+h2 > code, h3 > code {
+  font-weight: normal;
+}
+
+pre {
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  color: rgb(150,0,0);
+  margin-top: 0;
+}
+
+pre > code { font-size: 90%; }
+
+hr {
+  border-style:solid; /* This seems to need to be explicitly set*/
+  border: 0.5px solid black;
+  margin: 5% auto;
+  width: 90%;
+}
+
+.note { color: blue; }
+
+.note code { color: inherit; }
+
+.bg-floral-white { background-color:floralWhite; }
+
+a {
+  color: rgb(0,150,0);
+}
+
+#board {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  background-color: tan;
+  padding: 30% 0;
+  border: 1px solid black;
+  border-radius: 20px;
+  /* You can't do overflow: hidden because you won't be able to get the penguins off the board.
+  Consequently, you'll have to fix the edges of the corner grid squares.
+  overflow: hidden; */
+}
+
+#grid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  border: 1px solid rgba(0,0,0,0.5);
+  border-radius: 20px;
+  /* You can't do overflow: hidden because you won't be able to get the penguins off the board.
+  Consequently, you'll have to fix the edges of the corner grid squares.
+  overflow: hidden; */
+  box-shadow: 0px 3px rgb(160,130,90),
+              0px 4px rgba(160,82,45,0.75),
+              -3px 7px 3px rgba(0,0,0,0.5);
+}
+
+#grid > div {
+  position: relative;
+  width: 25%;
+  padding: 12.5% 0;
+  background-color:floralwhite;
+}
+
+#grid > div:nth-child(1),
+#grid > div:nth-child(3),
+#grid > div:nth-child(6),
+#grid > div:nth-child(8),
+#grid > div:nth-child(9),
+#grid > div:nth-child(11){
+  background-image: url("images/dark-square.jpg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+}
+
+#grid > div:nth-child(2),
+#grid > div:nth-child(4),
+#grid > div:nth-child(5),
+#grid > div:nth-child(7),
+#grid > div:nth-child(10),
+#grid > div:nth-child(12){
+  background-image: url("images/light-square.jpg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+}
+
+#grid > div:nth-child(1)  { border-top-left-radius: 20px;     }
+#grid > div:nth-child(4)  { border-top-right-radius: 20px;    }
+#grid > div:nth-child(9)  { border-bottom-left-radius: 20px;  }
+#grid > div:nth-child(12) { border-bottom-right-radius: 20px; }
+
+.penguin {
+  display: none;
+  position: absolute;
+  width: 60px;
+  height: 90px;
+  background-image: url("images/penguin.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: 0.5px solid rgba(75,75,75,0.75);
+  border-radius: 5px;
+  /* box-shadow: -5px 5px 5px rgba(0,0,0,0.5); */
+  box-shadow: 0px 3px rgb(180,180,180),
+              0px 3.5px rgba(50,50,50,0.75),
+              -2px 5px 2px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.egg {
+  display: none;
+  position: absolute;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 40px;
+  height: 60px;
+  border: 1px solid black;
+  /* -webkit-border-radius: 50% / 60% 60% 40% 40%; */
+  border-radius: 50% / 60% 60% 40% 40%;
+  box-shadow: -3px 3px 3px rgba(0,0,0,0.5);
+  z-index: 5;
+}
+
+#egg1  { background-color: red; }
+#egg2  { background-color: red; }
+#egg3  { background-color: orange; }
+#egg4  { background-color: orange; }
+#egg5  { background-color: yellow; }
+#egg6  { background-color: yellow; }
+#egg7  { background-color: rgb(0,200,0); }
+#egg8  { background-color: rgb(0,200,0); }
+#egg9  { background-color: #61DAFB; }
+#egg10 { background-color: #61DAFB; }
+#egg11 { background-color: violet; }
+#egg12 { background-color: violet; }
+
+#set-board-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 20px;
+}
+
+#dice-roll-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top-right-radius: 20px;
+}
+
+#die1 {
+  position: absolute;
+  top: 7.5%;
+  right: 5%;
+  width: 40px;
+  height: 40px;
+  background-color: floralWhite;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#die2 {
+  position: absolute;
+  top: 7.5%;
+  right: 0.5%;
+  width: 40px;
+  height: 40px;
+  background-color: floralWhite;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.btn.btn-success {
+  background: rgb(0,200,0);
+  border: 1px solid rgba(0,0,0,0.15);
+}

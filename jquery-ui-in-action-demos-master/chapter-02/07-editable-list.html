@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+	<title> - </title>
+
+
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Mystery+Quest');
+		@import url('https://fonts.googleapis.com/css?family=Cormorant+SC');
+
+		/* This should not actually be necessary. I believe reboot does this already.
+		https://getbootstrap.com/docs/4.1/content/reboot/ */
+		* { box-sizing: border-box; }
+
+		html {
+			height: 100%;
+		}
+
+		body {
+			min-height: 100%;
+			width: 90%;
+			margin: 0 auto;
+			padding: 1px 0;
+			font-size: 16px;
+			background-color: floralWhite;
+		}
+
+		section {
+			margin-bottom: 200px;
+		}
+
+		article {
+			margin-top: 5%;
+			padding: 2.5%;
+			background-color: white;
+			border: 1px solid black;
+			border-radius: 5px;
+		}
+
+		p {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		header h1 {
+			margin: 5% auto;
+			font-size: 300%;
+			font-family: 'Mystery Quest';
+			text-shadow: -5px 5px 5px rgba(0,0,0,0.25);
+			color: rgb(150,0,0);
+			text-align: center;
+		}
+
+		header h1 > code {
+			color: rgb(150,0,0);
+		}
+
+		h2 {
+			font-family: 'Cormorant SC', serif;
+			margin: 2.5% 0;
+		}
+
+		h3 {
+			font-family: 'Cormorant SC', serif;
+		}
+
+		h2 > code, h3 > code {
+			font-weight: normal;
+		}
+
+
+		pre {
+			margin: 0;
+			padding: 0;
+		}
+
+		code {
+			color: rgb(150,0,0);
+		}
+
+		pre > code { font-size: 90%; }
+
+		hr {
+			border-style:solid; /* This seems to need to be explicitly set*/
+			border: 0.5px solid black;
+			margin: 5% auto;
+			width: 90%;
+		}
+
+		.note { color: blue; }
+
+		.note code { color: inherit; }
+
+		.bg-floral-white { background-color:floralWhite; }
+
+	</style>
+
+
+	<style>
+		.ui-dialog p {
+			display: none;
+		}
+
+		.admin-dialog p {
+			display: block;
+		}
+
+		.admin-dialog form {
+			display: none;
+		}
+
+		.ui-dialog label {
+			display: block;
+		}
+
+		.admin-dialog button:first-child {
+			display: none;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 90%;
+			margin: 0 auto;
+		}
+
+		thead th {
+			background: lightSkyblue;
+		}
+
+		th {
+			border-bottom: 2px solid black;
+		}
+
+		td, th {
+			padding: 1em 2em;
+			text-align: left;
+			border: 1px solid gray;
+		}
+
+
+		table tr:nth-child(even) {
+			background: #eee;
+		}
+	</style>
+</head>
+
+
+<body>
+	<header>
+    <h1><code>07-editable-list.html</code></h1>
+  </header>
+
+  <hr>
+
+	<main>
+    <!-- =========================================================================================================================
+
+    ========================================================================================================================== -->
+
+		<section>
+			<article id="article1">
+				<h5>Editable List:</h5>
+
+				<p></p>
+
+
+<pre><code>
+	$( "#dialog" ).dialog({
+		autoOpen: false,
+		buttons: {
+			Update: function() {
+				var firstName = $( "#firstName" ).val();
+				var lastName  = $( "#lastName" ).val();
+				var row       = $( this ).data( "editingRow" );
+
+				row.find( "td" ).eq( 1 ).text( firstName );
+				row.find( "td" ).eq( 2 ).text( lastName );
+				$( this ).dialog( "close" );
+			},
+
+			Cancel: function() {
+				$( this ).dialog( "close" );
+			}
+		}
+	});
+
+	$( "table" ).on( "click", "button", function() {
+		var row       = $( this ).parents( "tr" );
+		var firstName = row.find( "td" ).eq( 1 ).text();
+		var lastName  = row.find( "td" ).eq( 2 ).text();
+		var admin     = row.find( "td" ).eq( 3 ).text() === "Yes";
+
+		$( "#firstName" ).val( firstName );
+		$( "#lastName" ).val( lastName );
+
+		$( "#dialog" )
+			.dialog( "option", {
+				title: "Editing " + firstName + " " + lastName,
+				dialogClass: admin ? "admin-dialog" : ""
+			})
+			.data( "editingRow", row )
+			.dialog( "open" );
+	});
+</code></pre><br>
+
+				<p></p>
+
+				<br>
+
+				<table>
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Admin</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Dave</td>
+							<td>Man</td>
+							<td>Yes</td>
+							<td>
+								<button class="btn btn-secondary">Edit</button>
+							</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Santa</td>
+							<td>Claus</td>
+							<td>No</td>
+							<td>
+								<button class="btn btn-secondary">Edit</button>
+							</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Easter</td>
+							<td>Bunny</td>
+							<td>No</td>
+							<td>
+								<button class="btn btn-secondary">Edit</button>
+							</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>Tooth</td>
+							<td>Fairy</td>
+							<td>No</td>
+							<td>
+								<button class="btn btn-secondary">Edit</button>
+							</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Chuck</td>
+							<td>Norris</td>
+							<td>Yes</td>
+							<td>
+								<button class="btn btn-secondary">Edit</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div id="dialog">
+					<form>
+						<label for="firstName">First Name:</label>
+						<input type="text" id="firstName">
+
+						<label for="lastName">Last Name:</label>
+						<input type="text" id="lastName">
+					</form>
+					<p>Administrators cannot be edited.</p>
+				</div>
+
+				<br>
+				<br>
+
+			</article>
+		</section>
+	</main>
+
+
+
+
+	<!-- =========================================================================================================================
+																												scripts
+	========================================================================================================================== -->
+
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery-ui.js"></script>
+
+	<script>
+
+	$( "#dialog" ).dialog({
+		autoOpen: false,
+		buttons: {
+			Update: function() {
+				var firstName = $( "#firstName" ).val();
+				var lastName  = $( "#lastName" ).val();
+				var row       = $( this ).data( "editingRow" );
+
+				row.find( "td" ).eq( 1 ).text( firstName );
+				row.find( "td" ).eq( 2 ).text( lastName );
+				$( this ).dialog( "close" );
+			},
+
+			Cancel: function() {
+				$( this ).dialog( "close" );
+			}
+		}
+	});
+
+	$( "table" ).on( "click", "button", function() {
+		var row       = $( this ).parents( "tr" );
+		var firstName = row.find( "td" ).eq( 1 ).text();
+		var lastName  = row.find( "td" ).eq( 2 ).text();
+		var admin     = row.find( "td" ).eq( 3 ).text() === "Yes";
+
+		$( "#firstName" ).val( firstName );
+		$( "#lastName" ).val( lastName );
+
+		$( "#dialog" )
+			.dialog( "option", {
+				title: "Editing " + firstName + " " + lastName,
+				dialogClass: admin ? "admin-dialog" : ""
+			})
+			.data( "editingRow", row )
+			.dialog( "open" );
+	});
+	</script>
+</body>
+</html>

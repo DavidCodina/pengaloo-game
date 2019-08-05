@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+	<title> - </title>
+
+
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Mystery+Quest');
+		@import url('https://fonts.googleapis.com/css?family=Cormorant+SC');
+
+		/* This should not actually be necessary. I believe reboot does this already.
+		https://getbootstrap.com/docs/4.1/content/reboot/ */
+		* { box-sizing: border-box; }
+
+		html {
+			height: 100%;
+		}
+
+		body {
+			min-height: 100%;
+			width: 90%;
+			margin: 0 auto;
+			padding: 1px 0;
+			font-size: 16px;
+			background-color: floralWhite;
+		}
+
+		section {
+			margin-bottom: 200px;
+		}
+
+		article {
+			margin-top: 5%;
+			padding: 2.5%;
+			background-color: white;
+			border: 1px solid black;
+			border-radius: 5px;
+		}
+
+		p {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		header h1 {
+			margin: 5% auto;
+			font-size: 300%;
+			font-family: 'Mystery Quest';
+			text-shadow: -5px 5px 5px rgba(0,0,0,0.25);
+			color: rgb(150,0,0);
+			text-align: center;
+		}
+
+		header h1 > code {
+			color: rgb(150,0,0);
+		}
+
+		h2 {
+			font-family: 'Cormorant SC', serif;
+			margin: 2.5% 0;
+		}
+
+		h3 {
+			font-family: 'Cormorant SC', serif;
+		}
+
+		h2 > code, h3 > code {
+			font-weight: normal;
+		}
+
+
+		pre {
+			margin: 0;
+			padding: 0;
+		}
+
+		code {
+			color: rgb(150,0,0);
+		}
+
+		pre > code { font-size: 90%; }
+
+		hr {
+			border-style:solid; /* This seems to need to be explicitly set*/
+			border: 0.5px solid black;
+			margin: 5% auto;
+			width: 90%;
+		}
+
+		.note { color: blue; }
+
+		.note code { color: inherit; }
+
+		.bg-floral-white { background-color:floralWhite; }
+
+	</style>
+</head>
+
+
+<body>
+	<header>
+    <h1><code>09-callback-vs-event-handler.html</code></h1>
+  </header>
+
+  <hr>
+
+	<main>
+    <!-- =========================================================================================================================
+
+    ========================================================================================================================== -->
+
+		<section>
+			<article id="article1">
+				<h5>Callback vs. Event Handler:</h5>
+
+				<p></p>
+
+
+<pre><code>
+	$("#button1")
+		.wrap("&#60;div class='text-center my-4 p-4'&#62;&#60;/div&#62;")
+		.on('click', function() {
+
+
+			//The two ways of handling events in jQuery UI.
+			//These example are equivalent.
+
+			//Callback:
+			$( "#dialog-1" ).dialog({
+				title: "Dialog 1",
+				create: function() {
+					$( this ).css( "display", "block" );
+					console.log("#dialog-1 was created!")
+				}
+			});
+
+			//Event handler:
+			$( "#dialog-2" )
+				.on( "dialogcreate", function() {
+					$( this ).css( "display", "block" );
+					console.log("#dialog-2 was created!")
+				})
+
+				.dialog({
+					title: "Dialog 2"
+				});
+		});
+</code></pre><br>
+
+				<p></p>
+
+				<br>
+
+				<button id="button1" class="btn btn-primary">Create two dialogs!</button>
+
+				<style>
+				#dialog-1, #dialog-2 {
+					display:none;
+				}
+				</style>
+
+				<div id="dialog-1">
+					These divs were not initially dialogs.
+					Therefore, they were set to <code>display:none</code> until
+					<code>.dialog()</code> was applied to them (by clicking the button).
+				</div>
+
+				<div id="dialog-2">
+					This technique is an alternative to the approach taken in 08,
+					whereby the divs were created at the same time as <code>dialog()</code> was applied.
+				</div>
+
+
+			</article>
+		</section>
+	</main>
+
+
+
+
+	<!-- =========================================================================================================================
+																												scripts
+	========================================================================================================================== -->
+
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery-ui.js"></script>
+
+	<script>
+	$("#button1")
+		.wrap("<div class='text-center my-4 p-4'></div>")
+		.on('click', function() {
+
+
+			//The two ways of handling events in jQuery UI.
+			//These example are equivalent.
+
+			//Callback:
+			$( "#dialog-1" ).dialog({
+				title: "Dialog 1",
+				create: function() {
+					$( this ).css( "display", "block" );
+					console.log("#dialog-1 was created!")
+				}
+			});
+
+			//Event handler:
+			$( "#dialog-2" )
+				.on( "dialogcreate", function() {
+					$( this ).css( "display", "block" );
+					console.log("#dialog-2 was created!")
+				})
+
+				.dialog({
+					title: "Dialog 2"
+				});
+		});
+	</script>
+</body>
+</html>

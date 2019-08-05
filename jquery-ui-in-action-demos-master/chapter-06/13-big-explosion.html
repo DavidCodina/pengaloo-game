@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Big Explosion</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "<div>" )
+		.appendTo( "body" )
+		.css({ height: 500, width: 500, background: "red" })
+		.effect( "explode", { pieces: 100, duration: 10000 });
+</script>
+
+</body>
+</html>

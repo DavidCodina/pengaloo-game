@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+	<title> - </title>
+
+
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Mystery+Quest');
+		@import url('https://fonts.googleapis.com/css?family=Cormorant+SC');
+
+		/* This should not actually be necessary. I believe reboot does this already.
+		https://getbootstrap.com/docs/4.1/content/reboot/ */
+		* { box-sizing: border-box; }
+
+		html {
+			height: 100%;
+		}
+
+		body {
+			min-height: 100%;
+			width: 90%;
+			margin: 0 auto;
+			padding: 1px 0;
+			font-size: 16px;
+			background-color: floralWhite;
+		}
+
+		section {
+			margin-bottom: 200px;
+		}
+
+		article {
+			margin-top: 5%;
+			padding: 2.5%;
+			background-color: white;
+			border: 1px solid black;
+			border-radius: 5px;
+		}
+
+		p {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		header h1 {
+			margin: 5% auto;
+			font-size: 300%;
+			font-family: 'Mystery Quest';
+			text-shadow: -5px 5px 5px rgba(0,0,0,0.25);
+			color: rgb(150,0,0);
+			text-align: center;
+		}
+
+		header h1 > code {
+			color: rgb(150,0,0);
+		}
+
+		h2 {
+			font-family: 'Cormorant SC', serif;
+			margin: 2.5% 0;
+		}
+
+		h3 {
+			font-family: 'Cormorant SC', serif;
+		}
+
+		h2 > code, h3 > code {
+			font-weight: normal;
+		}
+
+
+		pre {
+			margin: 0;
+			padding: 0;
+		}
+
+		code {
+			color: rgb(150,0,0);
+		}
+
+		pre > code { font-size: 90%; }
+
+		hr {
+			border-style:solid; /* This seems to need to be explicitly set*/
+			border: 0.5px solid black;
+			margin: 5% auto;
+			width: 90%;
+		}
+
+		.note { color: blue; }
+
+		.note code { color: inherit; }
+
+		.bg-floral-white { background-color:floralWhite; }
+
+
+		.form-group {
+	    margin-bottom: 16px;
+	  }
+
+
+		form table {
+			border-collapse: collapse;
+			width: 100%;
+
+			margin: 20px auto;
+		}
+
+		form table th,
+		form table td {
+			/* border: 0.5px solid black; */
+		}
+
+		form table td:nth-of-type(2) {
+			width: 80%;
+		}
+
+		form input {
+			width: 100%;
+		}
+
+
+
+	</style>
+</head>
+
+
+<body>
+	<header>
+    <h1><code>10-counting-dialogs.html</code></h1>
+  </header>
+
+  <hr>
+
+	<main>
+    <!-- =========================================================================================================================
+
+    ========================================================================================================================== -->
+
+		<section>
+			<article id="article1">
+				<h5>Counting Dialogs:</h5>
+
+				<p class="note">In this example, I also added a form to make custom messages.</p>
+
+
+<pre><code>
+	//Make a dialog with a custom title and content.
+	$("#form1").on("submit", function(event){
+		event.preventDefault();
+
+		var title      = $("input[name='title']").val();
+		var message    = $("input[name='message']").val();
+		var new_dialog = $("&#60;div&#62;" + message + "&#60;/div&#62;").dialog({ title: title });
+	});
+
+
+	//Or just make a blank dialog.
+	$("#button1")
+		.wrap("&#60;div class='text-center my-4 p-4'&#62;&#60;/div&#62;")
+		.on('click', function(){ $("&#60;div&#62;").dialog(); });
+
+
+	//Count the number of dialogs made.
+	var dialogs = 0;
+
+	$( document ).on( "dialogcreate", function() {
+		dialogs++;
+		$( "#count" ).text( dialogs );
+	});
+
+</code></pre><br>
+
+				<p></p>
+
+				<br>
+
+
+
+
+				<form id="form1" class="w-50 mx-auto p-3 bg-floral-white border border-dark rounded">
+					<fieldset>
+						<legend class="text-center my-4" style="font-size: 150%;">Make a Note:</legend>
+
+						<!-- This article asks the question: How do you align inputs?
+					  https://stackoverflow.com/questions/4309950/how-to-align-input-forms-in-html
+
+					  Technically, using a table to do this is probably a bad practice.
+					  Nonetheless, I did it hear for convenience. -->
+						<table>
+							<tr>
+								<td><label for="title">Title:</label></td>
+								<td><input id="title" type="text" placeholder="Enter Title"name="title" required></td>
+							</tr>
+
+							<tr>
+								<td><label for="message">Message:</label></td>
+								<td><input id="message" type="text" placeholder="Enter Message" name="message" required></td>
+							</tr>
+						</table>
+
+						<div class="form-group text-center">
+	            <button type="submit" class="btn btn-success">Submit</button>
+	            <button type="reset"  class="btn btn-danger">Reset</button>
+	          </div>
+					</fieldset>
+				</form>
+
+				<button id="button1" class="btn btn-secondary">Or click this button for a blank dialog</button>
+
+				<p><strong>Dialogs created:</strong> <span id="count">0</span></p>
+
+			</article>
+		</section>
+	</main>
+
+
+
+
+	<!-- =========================================================================================================================
+																												scripts
+	========================================================================================================================== -->
+
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery-ui.js"></script>
+
+	<script>
+		//Make a dialog with a custom title and content.
+		$("#form1").on("submit", function(event){
+			event.preventDefault();
+
+			var title      = $("input[name='title']").val();
+			var message    = $("input[name='message']").val();
+			var new_dialog = $( "<div>" + message + "</div>" ).dialog({ title: title });
+		});
+
+
+		//Or just make a blank dialog.
+		$("#button1")
+			.wrap("<div class='text-center my-4 p-4'></div>")
+			.on('click', function() { $( "<div>" ).dialog(); });
+
+
+		//Count the number of dialogs made.
+		var dialogs = 0;
+
+		$( document ).on( "dialogcreate", function() {
+			dialogs++;
+			$( "#count" ).text( dialogs );
+		});
+	</script>
+</body>
+</html>
